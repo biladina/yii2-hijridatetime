@@ -1,6 +1,6 @@
 Hijri Date Time
 ==================
-Hijri Date Time extension is a convenient and complete solution for users who want to use Hijri date in their projects and convert Gregorian calendar to Hijri (Islamic) calendar.
+Hijri Date Time extension is a convenient and complete solution for users who want to use Hijri date in their projects and convert Gregorian calendar to Hijri (Islamic) calendar. This extensions is 100% compatible with "Umm al-Qura" formal calendar in Saudi Arabia and the Muslim world.
 
 It support Arabic, English, France, and Indonesia languages.
 
