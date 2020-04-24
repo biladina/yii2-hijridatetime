@@ -37,6 +37,8 @@
 
 namespace biladina\hijridatetime;
 
+use Yii;
+
 class HijriDateTime extends \yii\base\Widget {
 
     /**
@@ -57,6 +59,14 @@ class HijriDateTime extends \yii\base\Widget {
     }
 
     public function init() {
+    	parent::init();
+        if (!isset(Yii::$app->i18n->translations['hijri'])) {
+            Yii::$app->i18n->translations['hijri'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'sourceLanguage' => 'en',
+                'basePath' => '@biladina/src/messages',
+            ];
+        }
     }
     
     /**
