@@ -56,9 +56,6 @@ class HijriDateTime extends \yii\base\Widget {
      * @param $lang String language - "ar" for Arabic months name
      */
     function __construct() {
-    }
-
-    public function init() {
     	parent::init();
         if (!isset(Yii::$app->i18n->translations['hijri'])) {
             Yii::$app->i18n->translations['hijri'] = [
@@ -67,6 +64,9 @@ class HijriDateTime extends \yii\base\Widget {
                 'basePath' => '@biladina/hijridatetime/messages',
             ];
         }
+    }
+
+    public function init() {
     }
     
     /**
