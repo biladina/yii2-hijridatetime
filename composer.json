@@ -3,7 +3,7 @@
     "description": "Hijri Date Time - Extension from Abdulrhman Alkhodiry, compatible with 'Umm al-Qura' formal calendar in Saudi Arabia and the Muslim world",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","hijridatetime","hijri","hijriyah"],
-    "license": "GNU GPL",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Abdulrhman Alkhodiry",
