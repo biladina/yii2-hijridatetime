@@ -3,6 +3,7 @@ Change Log: `yii2-hijridatetime`
 
 **Date:** 24-Apr-2020
 
+- Add construct code for initialize translation (Nabil Munawar)
 - Add Indonesia translation (Nabil Munawar)
 - Change translation from 'Hijri' to 'hijri' (Nabil Munawar)
 
