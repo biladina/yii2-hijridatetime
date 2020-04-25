@@ -46,5 +46,5 @@ return array(
 	'sh.tm.am' => 'am',
 	'sh.tm.pm' => 'pm',
 	'lo.tm.AM' => 'AM',
-	'lo.tm.PM' => 'PM',	
+	'lo.tm.PM' => 'PM',
 );

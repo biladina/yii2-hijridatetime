@@ -39,7 +39,8 @@ namespace biladina\hijridatetime;
 
 use Yii;
 
-class HijriDateTime extends \yii\base\Widget {
+class HijriDateTime extends \yii\base\Widget
+{
 
     /**
      * Defaults
@@ -55,9 +56,11 @@ class HijriDateTime extends \yii\base\Widget {
      * To use system defaults pass null for english names
      * @param $lang String language - "ar" for Arabic months name
      */
-    function __construct() {
+    function __construct()
+    {
     	parent::init();
-        if (!isset(Yii::$app->i18n->translations['hijri'])) {
+        if (!isset(Yii::$app->i18n->translations['hijri']))
+        {
             Yii::$app->i18n->translations['hijri'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
                 'sourceLanguage' => 'en',
@@ -66,8 +69,8 @@ class HijriDateTime extends \yii\base\Widget {
         }
     }
 
-    public function init() {
-    }
+    public function init()
+    {}
     
     /**
      * returns a string formatted according to the given format string using the given
@@ -80,12 +83,16 @@ class HijriDateTime extends \yii\base\Widget {
      * @return String Returns the Hijri date according to format and timestamp in Arabic/English
      *
      */
-    function date($format, $timestamp=0) {
-        if ($timestamp === 0) {
+    function date($format, $timestamp=0)
+    {
+        if ($timestamp === 0)
+        {
             $timestamp = time();
         }
+
         list ($d, $D, $j, $l, $S, $F, $m, $M, $n, $t, $L, $o, $Y, $y, $w, $a, $A, $H, $i, $s, $O) = explode("/", date("d/D/j/l/S/F/m/M/n/t/L/o/Y/y/w/a/A/H/i/s/O", $timestamp));
         extract($this->GeToHijr($d, $m, $Y));
+
         $j = $day;
         $t = $ml;
         $L = $ln;
@@ -97,8 +104,6 @@ class HijriDateTime extends \yii\base\Widget {
         $S = substr($j, -1) == 1 ? "st" : (substr($j, -1) == 2 ? "nd" : (substr($j, -1) == 3 ? "rd" : "th"));
         $F = Yii::t('hijri', 'lo.mon.' . $n);
         $M = Yii::t('hijri', 'sh.mon.' . $n);
-
-
         $D = Yii::t('hijri', 'sh.day.' . $w);
         $l = Yii::t('hijri', 'lo.day.' . $w);
         $S = "";
@@ -110,6 +115,7 @@ class HijriDateTime extends \yii\base\Widget {
         $format = str_replace($davars, $myvars, $format);
         $date = date($format, $timestamp);
         $date = str_replace(array("¢", "£", "ç", "¥", "©", "ï", "â", "®"), array($D, $l, $S, $F, $M, $a, $A, $r), $date);
+
         return $date;
     }
 
@@ -123,19 +129,24 @@ class HijriDateTime extends \yii\base\Widget {
      * @return Array Hijri date[int month, int day, int year, int ln, int ml]
      * @see Robert Gent method maker (http://www.phys.uu.nl/~vgent/islam/ummalqura.htm)
      */
-    public function GeToHijr($day=20, $month=02, $year=1976) {
+    public function GeToHijr($day=20, $month=02, $year=1976)
+    {
         $jd = GregorianToJD($month, $day, $year);
         $mjd = $jd - 2400000;
+
         foreach ($this->jdl as $i => $v)
             if ($v > ($mjd - 1))
                 break;
+
         $iln = $i + 15588; // Islamic lunation number (Births of New Moons)
         $ii = floor(($i - 1) / 12);
         $year = 1300 + $ii; // year
         $month = $i - 12 * $ii; // month
         $day = $mjd - $this->jdl[$i - 1]; //day
         $ml = $this->jdl[$i] - $this->jdl[$i - 1]; // Month Length
+        
         list ($_Date["month"], $_Date["day"], $_Date["year"], $_Date["ln"], $_Date["ml"]) = array($month, $day, $year, $iln, $ml);
+        
         return ($_Date);
     }
 
@@ -147,17 +158,21 @@ class HijriDateTime extends \yii\base\Widget {
      * @param String $sep separator
      * @return String Date in Hijri as formated or like d-m-Y 
      */
-    public function strToHijri($strDate, $format= "d-m-Y") {
-        if ($format == "d-m-Y") {
+    public function strToHijri($strDate, $format= "d-m-Y")
+    {
+        if ($format == "d-m-Y")
+        {
             list ($d, $m, $Y) = explode("/", date("d/m/Y", strtotime($strDate)));
             extract($this->GeToHijr($d, $m, $Y));
             $date = "$day-$month-$year";
-        } else {
+        }
+        else
+        {
             $date = $this->date($format, strtotime($strDate));
         }
+
         return $date;
     }
-
 }
 
 ?>
